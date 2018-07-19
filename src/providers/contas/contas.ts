@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { DatabaseProvider } from './../database/database';
+import { SQLiteObject } from '../../../node_modules/@ionic-native/sqlite';
 
 @Injectable()
 export class ContasProvider {
@@ -12,26 +13,36 @@ list: any = [];
   }
 
   getList(){
-    this.list =[
-      {descricao: "Alimentação"},
-      {descricao: "Lazer"},
-      {descricao: "Serviço"},
-    ]
-    return this.list;
-
+    return this.dbProvider.getDb()
+    .then((db: SQLiteObject) =>{
+      let sql = 'SELECT *FROM contas';
+      return db.executeSql(sql, [])
+      .then((data: any ) =>{
+        if(data.rows.length > 0){
+          let contas: any[] = [];
+          for(var i = 0; i < data.rows.length; i++ ){
+            var conta = data.rows.item(i);
+            contas.push(conta);
+          }
+          return contas;
+        }else{
+          return[];
+        }
+      })
+      .catch((e) => console.error(e));      
+    })
+    .catch((e) => console.error(e));  
   }
 
-  insert(conta, sucessCallBack){
-    setTimeout(function(){
-      let sqlQuery = "INSERT INTO  CONTAS (descricao) VALUE (?)";
-      this.dataBase.executeSql(sqlQuery, [conta.descricao]).then((data) =>{
-        conta.id = data.insertId;
-        sucessCallBack(conta);
-      }, (error) =>{
-        console.log("Error na inserção de contas, " + JSON.stringify(error));
-      });
-    }, 100);
-
+  insert(conta: Conta){
+    return this.dbProvider.getDb()
+    .then((db: SQLiteObject) =>{
+      let sqlQuery = "INSERT INTO  contas (descricao) VALUES (?)";
+      let data = [conta.descricao];
+      return db.executeSql(sqlQuery, data)
+      .catch((e) => console.error(e));
+    })
+    .catch((e) => console.error(e));
 
   }
 
@@ -39,9 +50,20 @@ list: any = [];
 
   }
 
-  delete(conta){
-
+  delete(id: number){
+    return this.dbProvider.getDb()
+    .then((db: SQLiteObject) =>{
+      let sqlQuery = "DELETE FROM contas WHERE id = ?";
+      let data = [id];
+      return db.executeSql(sqlQuery, data)
+      .catch((e) => console.error(e));
+    })
+    .catch((e) => console.error(e));
   }
 
+}
 
+export class Conta{
+  id: number;
+  descricao: string;
 }
