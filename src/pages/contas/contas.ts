@@ -31,7 +31,6 @@ export class ContasPage {
     this.contasProvider.getList()
       .then((result: any) => {
         this.listaContas = result;
-        console.log(this.listaContas);
       })
       .catch(() => {
         this.toast.create({ message: 'Erro ao carregar contas', duration: 3000, position: 'buttom' }).present();

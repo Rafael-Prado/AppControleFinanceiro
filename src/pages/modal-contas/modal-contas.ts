@@ -1,6 +1,6 @@
 import { ContasPage } from './../contas/contas';
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, ToastController, NavController } from 'ionic-angular';
+import { IonicPage, NavParams, ToastController, NavController, ViewController } from 'ionic-angular';
 
 import { Conta, ContasProvider } from './../../providers/contas/contas';
 
@@ -11,7 +11,6 @@ import { Conta, ContasProvider } from './../../providers/contas/contas';
 })
 export class ModalContasPage {
 
-  view: any;
   conta:any;
   public contaObject: Conta
 
@@ -19,7 +18,8 @@ export class ModalContasPage {
     public navCtrl: NavController,
     public navParams: NavParams,
     private toast: ToastController,
-    private contasProvider: ContasProvider
+    private contasProvider: ContasProvider,
+    private view: ViewController
   )
   {
     
