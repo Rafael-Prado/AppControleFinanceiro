@@ -4,6 +4,7 @@ import { Platform } from 'ionic-angular';
 import { ContasPage } from './../pages/contas/contas';
 import { HomePage } from '../pages/home/home';
 import { LancamentosPage } from './../pages/lancamentos/lancamentos';
+import { SaldoPage } from './../pages/saldo/saldo';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,6 +14,7 @@ export class MyApp {
   home : any = HomePage;
   contas: any = ContasPage;
   lancamentos: any = LancamentosPage;
+  saldo:any = SaldoPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {

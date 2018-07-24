@@ -31,7 +31,7 @@ export class LancamentosPage {
 
   getAllLancamentos() {
     this.lancamentoProvider.getList()
-      .then((result: any) => {
+      .then((result: any[]) => {
         this.lista = result;
       })
       .catch(() => {
@@ -44,12 +44,25 @@ export class LancamentosPage {
     modal.present()
   }
 
-  edit(item){
+  delete(lancamento: Lancamento){
+    this.lancamentoProvider.delete(lancamento.id)
+       .then(() => {
+         let index = this.lista.indexOf(lancamento);
+         this.lista.splice(index, 1);
+         this.toast.create({ message: 'Lancamento removido com sucesso!', duration: 3000, position: 'buttom' }).present();
+       })
+       .catch(() => {
+         this.toast.create({ message: 'Erro ao remover lancamento!', duration: 3000, position: 'buttom' }).present();
+       })
+   }
 
+  lancamentoEntrada(lancamento){
+    return lancamento.entradaSaida =="entrada";
   }
 
-  delete(item){
-
+  edit(id: number){
+    let modal = this.modalCtrl.create(ModalLancamentosPage, { id });
+    modal.present()
   }
 
 }

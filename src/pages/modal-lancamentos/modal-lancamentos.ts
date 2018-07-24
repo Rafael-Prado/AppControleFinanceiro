@@ -28,6 +28,13 @@ export class ModalLancamentosPage {
   {
     this.lancamentoObject = new Lancamento();
     this.getAllContas();
+
+    if(this.navParams.data.id){
+      this.lancamentoProvider.getLancamentoId(this.navParams.data.id)
+      .then((result: any ) => {
+        this.lancamentoObject = result;
+      })
+    }
   }
 
   ionViewDidLoad() {
@@ -45,8 +52,13 @@ export class ModalLancamentosPage {
     });
   }
 
-  private salvarLancamento(){    
+  private salvarLancamento(){  
+    if(this.lancamentoObject.id){
+      return this.lancamentoProvider.update(this.lancamentoObject);
+    }else{
       return this.lancamentoProvider.insert(this.lancamentoObject);
+    }
+      
   }
 
   cancel(){

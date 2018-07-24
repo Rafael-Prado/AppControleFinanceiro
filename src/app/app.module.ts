@@ -1,4 +1,6 @@
-import { NgModule, ErrorHandler, LOCALE_ID } from '@angular/core';
+import { SaldoPage } from './../pages/saldo/saldo';
+import { ContasProvider } from './../providers/contas/contas';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { SQLite } from '@ionic-native/sqlite'
@@ -11,12 +13,13 @@ import { LancamentosPage } from './../pages/lancamentos/lancamentos';
 import { HomePage } from '../pages/home/home';
 import { ContasPage } from './../pages/contas/contas';
 import { ModalContasPage } from './../pages/modal-contas/modal-contas';
+import { StatusPipe } from './../pipes/status/status';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ContasProvider } from '../providers/contas/contas';
 import { DatabaseProvider } from '../providers/database/database';
 import { LancamentosProvider } from '../providers/lancamentos/lancamentos';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -24,10 +27,13 @@ import { LancamentosProvider } from '../providers/lancamentos/lancamentos';
     AboutPage,
     ContasPage,
     ContactPage,
+    SaldoPage,
     HomePage,
     ModalContasPage,
     LancamentosPage,
-    ModalLancamentosPage
+    ModalLancamentosPage,
+    StatusPipe,
+    
 
   ],
   imports: [
@@ -41,19 +47,21 @@ import { LancamentosProvider } from '../providers/lancamentos/lancamentos';
     ContasPage,
     ContactPage,
     HomePage,
+    SaldoPage,
     ModalContasPage,
     LancamentosPage,
-    ModalLancamentosPage
+    ModalLancamentosPage,
+    
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    {provide: LOCALE_ID, useValue: 'pt-BR '},
-    ContasProvider,
     SQLite,
     DatabaseProvider,
-    LancamentosProvider
+    LancamentosProvider,
+    ContasProvider,
+    DatePipe
   ]
 })
 export class AppModule {}

@@ -13,8 +13,26 @@
 <ion-content padding>
   <ion-list>
     <ion-item-sliding *ngFor="let item of lista">
-      <ion-item (click)="edit(item)">
-        {{ item.descricao}}
+      <ion-item [ngClass]="{entrada: lancamentoEntrada(item), saida: !lancamentoEntrada(item)}" (click)="edit(item.id)">
+        <ion-row>
+          <ion-col width-67>
+            <h2>{{ item.descricao }}</h2>
+            <p>
+              {{ item.conta }}
+            </p>
+            <p>
+              {{ item.data | date: 'dd/MM/yyyy'}}
+            </p>
+          </ion-col>
+          <ion-col width-33>
+            <p>
+              {{ item.valor | currency: 'BRL':true}}
+            </p>
+            <p>
+              {{ item.pago | statusPgto }}
+            </p>
+          </ion-col>
+        </ion-row>
       </ion-item>
       <ion-item-options>
         <button (click)="delete(item)" ion-button color="danger">
