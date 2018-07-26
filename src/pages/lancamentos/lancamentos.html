@@ -11,6 +11,7 @@
 
 
 <ion-content padding>
+<ion-searchbar (ionInput)="filtrar($event)" [(ngModel)]= "searchText"></ion-searchbar>
   <ion-list>
     <ion-item-sliding *ngFor="let item of lista">
       <ion-item [ngClass]="{entrada: lancamentoEntrada(item), saida: !lancamentoEntrada(item)}" (click)="edit(item.id)">

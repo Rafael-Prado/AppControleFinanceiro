@@ -47,6 +47,32 @@ export class LancamentosProvider {
     .catch((e) => console.error(e));  
   }
 
+  getData(dataCad: string = null){
+    return this.dbProvider.getDb()
+    .then((db: SQLiteObject) =>{
+      let sql = 'SELECT * FROM lancamentos WHERE data like ?';
+      var data: any[] = [];
+
+      data.push('%' + dataCad + '%')
+      
+      return db.executeSql(sql, [data])
+      .then((data: any) =>{
+        if(data.rows.length > 0){
+          let dados : any[] = [];
+
+          for (let i=0; i < data.rows.length; i++) {
+            var dado = data.rows.item(i);
+            dados.push(dado);            
+          }
+          return dados;
+        }else{
+          return[];
+        }
+      })
+    })
+  }
+
+
   getLancamentoId(id: number){
     return this.dbProvider.getDb()
     .then((db: SQLiteObject) =>{
@@ -92,7 +118,7 @@ export class LancamentosProvider {
   getSaldo(obj){
     return this.dbProvider.getDb()
     .then((db: SQLiteObject) =>{
-      let sql ="SELECT TOTAL( valor ) as saldo, entradaSaida FROM lancamentos WHERE pago = 'true' AND entradaSaida = 'entrada' UNION SELECT TOTAL(valor) as saldo, entradaSaida FROM lancamentos WHERE  pago = 'true' AND entradaSaida = 'saida' ";
+      let sql ="SELECT TOTAL (valor) as saldo, entradaSaida FROM lancamentos WHERE pago = 'true' AND entradaSaida = 'entrada' UNION SELECT TOTAL (valor) as saldo, entradaSaida FROM lancamentos WHERE  pago = 'true' AND entradaSaida = 'saida' ";
 
       return db.executeSql(sql, [])
       .then((data: any) =>{

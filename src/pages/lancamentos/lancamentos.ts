@@ -13,6 +13,7 @@ import { ModalLancamentosPage } from './../modal-lancamentos/modal-lancamentos';
 export class LancamentosPage {
 
   public lista: Lancamento[] = []
+  searchText: string = null;
 
   constructor(
     public navCtrl: NavController, 
@@ -63,6 +64,16 @@ export class LancamentosPage {
   edit(id: number){
     let modal = this.modalCtrl.create(ModalLancamentosPage, { id });
     modal.present()
+  }
+
+  filtrar(){
+    this.lancamentoProvider.getData(this.searchText)
+    .then((result: any[]) => {
+      this.lista = result;
+    })
+    .catch(() => {
+      this.toast.create({ message: 'Erro ao carregar lancamentos', duration: 3000, position: 'buttom' }).present();
+    })
   }
 
 }
