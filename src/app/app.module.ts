@@ -6,8 +6,6 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { SQLite } from '@ionic-native/sqlite'
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { ModalLancamentosPage } from './../pages/modal-lancamentos/modal-lancamentos';
 import { LancamentosPage } from './../pages/lancamentos/lancamentos';
 import { HomePage } from '../pages/home/home';
@@ -24,16 +22,14 @@ import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
     ContasPage,
-    ContactPage,
     SaldoPage,
     HomePage,
     ModalContasPage,
     LancamentosPage,
     ModalLancamentosPage,
     StatusPipe,
-    
+
 
   ],
   imports: [
@@ -43,15 +39,13 @@ import { DatePipe } from '@angular/common';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
     ContasPage,
-    ContactPage,
     HomePage,
     SaldoPage,
     ModalContasPage,
     LancamentosPage,
     ModalLancamentosPage,
-    
+
   ],
   providers: [
     StatusBar,

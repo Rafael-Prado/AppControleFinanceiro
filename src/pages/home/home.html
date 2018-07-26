@@ -7,7 +7,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content no-padding>
     <ion-card>
         <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSUIvuXdB1eus_TZiSOn_jQdgJ1SMnBFdPNhPOg-r91QpuIdDY9BA" />
         <ion-card-content>
@@ -20,32 +20,33 @@
         </ion-card-content>
         <ion-row no-padding>
             <ion-col>
-              <button ion-button clear small color="primary" icon-start (click)="onContas()">
+              <button ion-button clear small color="secondary" icon-start (click)="onContas()">
                 <ion-icon name='card'></ion-icon>
                 Contas
               </button>
             </ion-col>
             <ion-col text-center>
-              <button ion-button clear small color="Primary" icon-start (click)="onLancamentos()">
+              <button ion-button clear small color="secondary" icon-start (click)="onLancamentos()">
                 <ion-icon name='calculator'></ion-icon>
                 Lançamentos
-              </button>            
+              </button>
             </ion-col>
           </ion-row>
       </ion-card>
-      <div style="margin-top: 40px">
-      <button ion-button >
+      <div class="divSociais">
+        <a href="https://www.facebook.com/pradosistemas/" ion-button color="secondary">
           <ion-icon name="logo-facebook"></ion-icon>
-      </button>
-      <button ion-button >
+        </a>
+        <a href="https://www.instagram.com/rafaelprado201/" ion-button color="secondary">
           <ion-icon name="logo-instagram"></ion-icon>
-      </button>
-      <button ion-button >
+        </a>
+        <a href="skype:rafaeldacruzdoprado" ion-button color="secondary">
           <ion-icon name="logo-skype"></ion-icon>
-      </button>
-      <button ion-button >
+        </a>
+        <a href="https://www.linkedin.com/in/rafaelprado6b0115a2/" ion-button color="secondary">
           <ion-icon name="contacts"></ion-icon>
-      </button>
+        </a>
+
     </div>
 </ion-content>
 <ion-footer>
@@ -53,3 +54,5 @@
       <ion-title>Desenvolvido por PradoSystem - 2018</ion-title>
     </ion-toolbar>
   </ion-footer>
+
+
