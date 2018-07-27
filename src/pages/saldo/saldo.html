@@ -9,8 +9,10 @@
 
 </ion-header>
 
-<ion-content padding class="saldo">
-  <h1 color="favorite" class="texto-destaque">
-    {{ saldo | currency: "BRL": true}}
-  </h1>
+<ion-content padding >
+  <div class="texto-destaque">
+    <p >
+        {{ saldo | currency: "BRL": true}}
+    </p>
+  </div>
 </ion-content>
