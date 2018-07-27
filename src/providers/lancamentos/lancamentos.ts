@@ -114,36 +114,39 @@ export class LancamentosProvider {
     })
     .catch((e) => console.error(e));
   }
-
-  getSaldo(obj){
+  
+  getLancamentoEntrada(){
     return this.dbProvider.getDb()
     .then((db: SQLiteObject) =>{
-      let sql ="SELECT TOTAL (valor) as saldo, entradaSaida FROM lancamentos WHERE pago = 'true' AND entradaSaida = 'entrada' UNION SELECT TOTAL (valor) as saldo, entradaSaida FROM lancamentos WHERE  pago = 'true' AND entradaSaida = 'saida' ";
-
-      return db.executeSql(sql, [])
-      .then((data: any) =>{
-        if (data.rows.length > 0) {
-          let saldo = 0;
-          if (data.rows.length > 0) {
-            for (let i = 0; i < data.length; i++) {
-              let item ={
-                saldo: data.rows.item(i).saldo,
-                entradaSaida: data.rows.item(i).entradaSaida
-              }
-              if (item.entradaSaida == 'entrada') {
-                saldo += item.saldo;
-              }else{
-                saldo -= item.saldo;
-              }              
-            }
-          }
-          obj(saldo);
-        }else{
-          return[];
-        }        
+      let sql = "SELECT SUM(valor) as saldo FROM lancamentos WHERE pago = 'true' AND entradaSaida = 'entrada'";
+      
+      return db.executeSql(sql,[])
+      .then((data: any ) =>{
+        let item = data;  
+        let saldoEntrada = item;        
+        return saldoEntrada;
       })
+      .catch((e) => console.error(e));      
     })
+    .catch((e) => console.error(e));  
   }
+
+  getLancamentoSaida(){
+    return this.dbProvider.getDb()
+    .then((db: SQLiteObject) =>{
+      let sql = "SELECT valor FROM lancamentos WHERE pago = 'true' AND entradaSaida = 'saida'";
+      
+      return db.executeSql(sql,[])
+      .then((data: any ) =>{
+        let item = data;  
+        let saldoSaida = item;        
+        return saldoSaida;
+      })
+      .catch((e) => console.error(e));      
+    })
+    .catch((e) => console.error(e));  
+  }
+
 
 }
 

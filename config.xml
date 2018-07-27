@@ -3,7 +3,7 @@
     <name>ControleFinanceiro</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.100:8107" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -86,5 +86,12 @@
     <allow-navigation href="http://192.168.50.107:8100" />
     <allow-navigation href="http://192.168.1.101:8100" />
     <allow-navigation href="http://192.168.1.100:8100" />
+    <allow-navigation href="http://192.168.1.100:8101" />
+    <allow-navigation href="http://192.168.1.100:8102" />
+    <allow-navigation href="http://192.168.1.100:8103" />
+    <allow-navigation href="http://192.168.1.100:8104" />
+    <allow-navigation href="http://192.168.1.100:8105" />
+    <allow-navigation href="http://192.168.1.100:8106" />
+    <allow-navigation href="http://192.168.1.100:8107" />
     <engine name="android" spec="7.0.0" />
 </widget>

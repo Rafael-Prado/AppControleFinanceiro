@@ -10,9 +10,17 @@
 </ion-header>
 
 <ion-content padding >
-  <div class="texto-destaque">
-    <p >
-        {{ saldo | currency: "BRL": true}}
+  <div >
+    <p style="color: green">
+      Entrada: {{ saldoEntrada | currency: "BRL": true}}
+    </p>
+    <br>
+    <br>
+    <p style="color: red">
+        Saida: {{ saldoSaida | currency: "BRL": true}}
+   </p>
+    <p class="texto-destaque">
+        {{ saldoEntrada - saldoSaida | currency: "BRL": true }}
     </p>
   </div>
 </ion-content>
